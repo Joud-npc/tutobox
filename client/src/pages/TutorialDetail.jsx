@@ -37,12 +37,25 @@ export default function TutorialDetail() {
   if (loading) return <p className="text-center mt-10 text-gray-400">Chargement...</p>;
   if (error)   return <p className="text-center mt-10 text-red-400">{error}</p>;
 
+  const getEmbedUrl = (url) => {
+  if (!url) return ''
+  // Déjà une URL embed
+  if (url.includes('/embed/')) return url
+  // URL classique youtube.com/watch?v=XXX
+  const match = url.match(/[?&]v=([^&]+)/)
+  if (match) return `https://www.youtube.com/embed/${match[1]}`
+  // URL courte youtu.be/XXX
+  const short = url.match(/youtu\.be\/([^?]+)/)
+  if (short) return `https://www.youtube.com/embed/${short[1]}`
+  return url
+}
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       {/* Vidéo */}
       <div className="aspect-video w-full rounded-xl overflow-hidden bg-black mb-6">
         <iframe
-          src={tutorial.videoUrl}
+          src={getEmbedUrl(tutorial.videoUrl)}
           title={tutorial.title}
           className="w-full h-full"
           allowFullScreen
