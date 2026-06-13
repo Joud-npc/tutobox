@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  username    String    @unique
+  password    String
+  role        Role      @default(USER)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime? // soft delete (désinscription RGPD)
+
+  progress    Progress[]
+
+  @@map("users")
+}
+
+model Tutorial {
+  id          String    @id @default(uuid())
+  title       String
+  description String
+  videoUrl    String
+  thumbnail   String?
+  category    String
+  duration    Int?      // en secondes
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  progress    Progress[]
+
+  @@map("tutorials")
+}
+
+model Progress {
+  id          String    @id @default(uuid())
+  userId      String
+  tutorialId  String
+  completed   Boolean   @default(false)
+  watchedAt   DateTime  @default(now())
+
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tutorial    Tutorial  @relation(fields: [tutorialId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tutorialId]) // un seul progress par user/tuto
+  @@map("progress")
+}

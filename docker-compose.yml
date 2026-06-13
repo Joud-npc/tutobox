@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: tutobox_user
+      POSTGRES_PASSWORD: tutobox_pass
+      POSTGRES_DB: tutobox
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: postgres -c hba_file=/etc/postgresql/pg_hba.conf
+    configs:
+      - source: pg_hba
+        target: /etc/postgresql/pg_hba.conf
+
+configs:
+  pg_hba:
+    content: |
+      local all all trust
+      host all all 0.0.0.0/0 md5
+
+volumes:
+  pgdata:
