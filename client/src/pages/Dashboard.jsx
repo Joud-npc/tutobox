@@ -36,6 +36,13 @@ export default function Dashboard() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-10">
 
+      <button
+        onClick={() => navigate('/')}
+        className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition mb-2"
+      >
+        ← Retour à l'accueil
+      </button>
+
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold">Mon espace</h1>

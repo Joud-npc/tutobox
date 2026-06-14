@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllTutorials, createTutorial, updateTutorial, deleteTutorial } from "../services/admin.service";
+import { useNavigate } from "react-router-dom";
 
 const EMPTY_FORM = {
   title: "",
@@ -12,6 +13,7 @@ const EMPTY_FORM = {
 };
 
 export default function Admin() {
+  const navigate = useNavigate();
   const [tutorials, setTutorials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -87,6 +89,13 @@ export default function Admin() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-10">
+
+      <button
+        onClick={() => navigate('/')}
+        className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition"
+      >
+        ← Retour à l'accueil
+      </button>
 
       <h1 className="text-2xl font-bold">Administration</h1>
 
