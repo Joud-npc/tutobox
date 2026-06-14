@@ -4,12 +4,12 @@ export const getTutorials = async (category) => {
   const res = await api.get('/tutorials', {
     params: category ? { category } : {}
   })
-  return res.data
+  return res.data.tutorials
 }
 
 export const getTutorialById = async (id) => {
   const res = await api.get(`/tutorials/${id}`)
-  return res.data
+  return res.data.tutorial
 }
 
 export const markProgress = async (id, completed) => {
