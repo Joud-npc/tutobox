@@ -2,7 +2,7 @@ import api from './api.js'
 
 export const getAllTutorials = async () => {
   const res = await api.get('/admin/tutorials')
-  return res.data
+  return res.data.tutorials
 }
 
 export const createTutorial = async (data) => {
