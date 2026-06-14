@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     setLoading(true)
     getTutorials(category)
-      .then((data) => setTutorials(data.tutorials))
+      .then((data) => setTutorials(data))
       .catch(() => setError('Impossible de charger les tutoriels'))
       .finally(() => setLoading(false))
   }, [category])
