@@ -12,6 +12,7 @@ const TYPE_COLORS = {
 };
 
 export default function Social() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("charte");
   const [openPub, setOpenPub] = useState(null);
 
