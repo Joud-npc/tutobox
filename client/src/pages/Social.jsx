@@ -20,6 +20,13 @@ export default function Social() {
     { id: "publications", label: "4 Publications" },
   ];
 
+  <button
+    onClick={() => navigate('/')}
+    className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition mb-6"
+  >
+    ← Retour à l'accueil
+  </button>
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-1">Stratégie réseaux sociaux</h1>

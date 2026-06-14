@@ -38,6 +38,13 @@ export default function Register() {
           </div>
         )}
 
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition mb-6"
+        >
+          ← Retour à l'accueil
+        </button>
+
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label className="text-gray-400 text-sm mb-1 block">Email</label>
