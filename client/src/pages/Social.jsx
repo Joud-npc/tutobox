@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CHARTE } from "../data/charte";
 import { CALENDRIER } from "../data/calendrier";
 import { PUBLICATIONS } from "../data/publications";
+import { useNavigate } from "react-router-dom"; 
 
 const TYPE_COLORS = {
   "Tutoriel long": "bg-indigo-800 text-indigo-200",
@@ -20,15 +21,16 @@ export default function Social() {
     { id: "publications", label: "4 Publications" },
   ];
 
-  <button
-    onClick={() => navigate('/')}
-    className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition mb-6"
-  >
-    ← Retour à l'accueil
-  </button>
+  
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+      <button
+        onClick={() => navigate('/')}
+        className="flex items-center gap-1 text-sm text-gray-400 hover:text-white transition mb-6"
+      >
+        ← Retour à l'accueil
+      </button>
       <h1 className="text-2xl font-bold mb-1">Stratégie réseaux sociaux</h1>
       <p className="text-gray-400 text-sm mb-6">
         Réseau choisi : <span className="text-red-400 font-semibold">YouTube</span>
